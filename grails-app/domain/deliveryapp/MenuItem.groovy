@@ -1,6 +1,6 @@
 package deliveryapp
 
-class ShoppingChart {
+class MenuItem {
 
     static constraints = {
     }
