@@ -8,6 +8,8 @@ class Restaurant {
     List hourOperation
     String phoneNumber
 
+    static hasMany = [menuItems: MenuItem]
+
     static constraints = {
     }
 }

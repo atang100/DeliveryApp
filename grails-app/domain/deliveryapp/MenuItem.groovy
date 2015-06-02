@@ -7,6 +7,10 @@ class MenuItem {
     String description
     String type
 
+    MenuItem menuItem
+
+    static belongsTo = [restaurant: Restaurant]
+
     static constraints = {
     }
 }

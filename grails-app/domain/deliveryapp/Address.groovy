@@ -8,6 +8,8 @@ class Address {
     String province
     String country
 
+    static belongsTo = [registeredUser: RegisteredUser]
+
     static constraints = {
         postalCode size: 6, blank: false
         streetName blank: false
