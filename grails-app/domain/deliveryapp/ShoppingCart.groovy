@@ -6,7 +6,7 @@ class ShoppingCart {
     String tax
     String deliveryCharge
     String total
-    RegisteredUser registeredUser
+    Customer customer
 
     static hasMany = [shoppingCartItems: ShoppingCart]
 

@@ -2,7 +2,7 @@ package deliveryapp
 
 class Restaurant {
 
-    String restaurantName
+    String restName
     String category
     String description
     List hourOperation

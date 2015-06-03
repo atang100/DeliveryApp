@@ -6,6 +6,7 @@ class ShoppingCartItem {
     int quantity
     String itemName
 
+    Restaurant restaurant
     static belongsTo = [shoppingCart: ShoppingCart]
 
     static constraints = {
