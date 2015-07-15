@@ -1,6 +1,6 @@
 package deliveryapp
 
-class Customer {
+class User {
 
     static hasMany = [addresses: Address, transaction: Transaction]
     static hasOne = [creditCard: CreditCard, shoppingCart: ShoppingCart]

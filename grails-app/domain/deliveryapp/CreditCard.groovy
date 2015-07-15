@@ -7,7 +7,7 @@ class CreditCard {
     String securityNumber
     String cardHolderName
 
-    Customer customer
+    User customer
 
 
     static constraints = {

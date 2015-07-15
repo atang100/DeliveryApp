@@ -1,6 +1,6 @@
 package deliveryapp
 
-class RegisteredCustomer extends Customer{
+class RegisteredUser extends User{
 
     String emailAddress
     String surname

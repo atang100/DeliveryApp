@@ -1,6 +1,6 @@
 package deliveryapp
 
-class UnregisteredCustomer extends Customer{
+class UnregisteredUser extends User{
 
     static constraints = {
     }

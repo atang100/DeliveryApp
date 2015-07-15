@@ -2,8 +2,9 @@ package deliveryapp
 
 class MenuItem {
 
+    String itemId
     String itemName
-    String price
+    double price
     String description
     String type
 

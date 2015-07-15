@@ -8,13 +8,13 @@ class Address {
     String province
     String country
 
-    static belongsTo = [customer: Customer]
+    static belongsTo = [customer: User]
 
     static constraints = {
-        postalCode size: 6, blank: false
+        postalCode size: 6..6, blank: false
         streetName blank: false
         city blank: false
-        province blank: province
-        country blank: country
+        province blank: false
+        country blank: false
     }
 }

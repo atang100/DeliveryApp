@@ -2,11 +2,12 @@ package deliveryapp
 
 class ShoppingCartItem {
 
-    String price
+    String itemId
+    double price
+    double totalPrice
     int quantity
     String itemName
 
-    Restaurant restaurant
     static belongsTo = [shoppingCart: ShoppingCart]
 
     static constraints = {

@@ -4,7 +4,7 @@ class Transaction {
 
     String orderStatus
 
-    static belongsTo = [customer: Customer]
+    static belongsTo = [customer: User]
 
     static constraints = {
     }

@@ -2,11 +2,10 @@ package deliveryapp
 
 class ShoppingCart {
 
-    String subTotal
-    String tax
-    String deliveryCharge
-    String total
-    Customer customer
+    double subTotal
+    double tax
+    double deliveryCharge
+    double total
 
     static hasMany = [shoppingCartItems: ShoppingCart]
 
