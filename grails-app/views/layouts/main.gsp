@@ -57,6 +57,9 @@
 						<a href="${request.contextPath}/theme/index.html">Home</a>
 					</li>
 					<li>
+					${test}
+					</li>
+					<li>
 						<a href="${request.contextPath}/theme/features.html">Features</a>
 					</li>
 					<li class="has-submenu">

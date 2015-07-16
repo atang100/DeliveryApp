@@ -30,7 +30,7 @@ class MenuController {
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         ShoppingCartService.incrementItemInCart(itemId, shoppingCartId)
 
-        //Implement refresh cart
+        //Render Cart
     }
 
     def decrementItem() {
@@ -40,6 +40,6 @@ class MenuController {
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         ShoppingCartService.decrementItemInCart(shoppingCartId)
 
-        //Implement refresh cart
+        //Render Cart
     }
 }

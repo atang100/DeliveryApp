@@ -9,10 +9,12 @@
 <html>
 <head>
     <title></title>
-    <meta name="layout" content="main"/>
+<%-- <meta name="layout" content="main"/>--%>
 </head>
 
 <body>
-    <h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2>
+<g:applyLayout name="main" params="[test: 3434243]">
+ <h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2><h2>TEST</h2>
+ </g:applyLayout>
 </body>
 </html>
