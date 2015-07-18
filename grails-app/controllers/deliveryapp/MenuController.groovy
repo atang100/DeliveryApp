@@ -8,13 +8,6 @@ class MenuController {
 
     def displayMenu() {
 
-        String userType
-        if (session.user == null) {
-            userType = "unregistered"
-        } else {
-            userType = "registered"
-        }
-
         Restaurant restaurant = Restaurant.findByRestName(params.restaurantName)
         List<MenuItem> menuList = restaurant.getMenuItems()
 
