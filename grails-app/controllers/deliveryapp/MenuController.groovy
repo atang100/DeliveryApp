@@ -9,7 +9,7 @@ class MenuController {
     def displayMenu() {
 
         Restaurant restaurant = Restaurant.findByRestName(params.restaurantName)
-        List<MenuItem> menuList = restaurant.getMenuItems()
+        List<MenuItem> menuList = restaurant.getMenuItems().asList()
 
         String shoppingCartId = ShoppingCartService.createCart()
 

@@ -40,7 +40,7 @@
                             </td>
                             <td>$5.00</td>
                             <td>${varMpr.deliveryTime} minutes</td>
-                            <td><a href="#">Order Now</a></td>
+                            <td><g:link controller="menu" action="displayMenu" params="[restaurantName: varMpr.restName]">Order Now</g:link></td>
                         </tr>
                     </g:each>
                     </tbody>
