@@ -6,6 +6,7 @@ class Restaurant {
     String category
     String description
     String phoneNumber
+    int deliveryTime
 
     static hasMany = [menuItems: MenuItem]
 
