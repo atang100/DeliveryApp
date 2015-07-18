@@ -7,6 +7,6 @@ class HomeController {
         List<Restaurant> mostPopularRestaurantList = Restaurant.findAllByCategory("most popular")
         List<Restaurant> restaurantList = Restaurant.findAll()
 
-        render (view: "index", model: [userType: userType, mostPopularRestaurantList: mostPopularRestaurantList, restaurantList: restaurantList])
+        render (view: "index", model: [mostPopularRestaurantList: mostPopularRestaurantList, restaurantList: restaurantList])
     }
 }
