@@ -4,11 +4,19 @@
 <h2>Your Cart</h2>
 
 <table class="table table-striped" data-toggle="table">
+    <thead>
+        <tr>
+            <th>Menu Item</th>
+            <th>Qty</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
     <tbody>
     <g:each in="${shoppingCartItemList}" var="varCart">
         <tr>
             <td><strong>${varCart.itemName}</strong></td>
-            <td>x${varCart.quantity}</td>
+            <td>x ${varCart.quantity}</td>
             <td>$${varCart.convertPriceToString()}</td>
             <td class="col-md-2">
                 <button class="btn-grey" type="button" name="decrement${varCart.itemName}"
