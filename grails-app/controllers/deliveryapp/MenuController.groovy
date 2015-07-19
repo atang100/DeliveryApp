@@ -16,7 +16,7 @@ class MenuController {
 
         List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>()
 
-        render (view: "index", model: [restaurant: restaurant, menuList: menuList, shoppingCartId: shoppingCartId, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
+        render (view: "index", model: [restName: restaurant.restName, menuList: menuList, shoppingCartId: shoppingCartId, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 
     def incrementItem() {

@@ -48,10 +48,13 @@
             </strong>
         </td>
         <td colspan="2" class="text-left text-danger">
-            ${shoppingCart.getTotal()}
+            ${shoppingCart.findTotal()}
         </td>
     </tr>
     </tbody>
 </table>
-
+<g:link controller="checkout"
+        action="index"
+        params="[shoppingCartId: shoppingCart.id, restName: restName]"
+        class="btn btn-blue btn-block">Checkout</g:link>
 </html>

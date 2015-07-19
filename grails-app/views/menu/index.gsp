@@ -19,7 +19,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1>${restaurant.restName}</h1>
+                    <h1>${restName}</h1>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
             <!-- Cart -->
             <div class="col-md-5">
                 <div class="blog-post" id="cartDiv">
-                    <g:render template="cart" model="[shoppingCart: shoppingCart]" />
+                    <g:render template="cart" model="[shoppingCart: shoppingCart, restName: restName]" />
                 </div>
             </div>
             <!-- Menu -->
@@ -111,10 +111,10 @@
 
     <script>
         function incrementItem(itemId) {
-            <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&itemId=' +itemId"/>
+            <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+this.restName +'&itemId=' +itemId"/>
         }
         function decrementItem(itemId) {
-            <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&itemId=' +itemId"/>
+            <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+this.restName +'&itemId=' +itemId"/>
         }
     </script>
 </g:applyLayout>
