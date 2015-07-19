@@ -35,7 +35,7 @@
                         </span>
                     </div>
 
-                    <form class="col-md-6">
+                    <g:form name="myForm" action="save" id="1" class="col-md-6">
                         <h3>Billing Information</h3>
                         <br>
 
@@ -51,7 +51,7 @@
 
                             <div class="input-group">
                                 <input type="text" id="ccNum" class="form-control col-md-6" maxlength="16"
-                                       placeholder="Credit Card Number" aria-label="...">
+                                       placeholder="Credit Card Number" aria-label="..." required>
                                 <span class="input-group-addon">
                                     <select id="lunch" class="selectpicker" data-live-search="true" title="Visa">
                                         <option>Visa</option>
@@ -95,11 +95,11 @@
                             <label for="phone">Phone</label>
                             <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
                         </div>
-                        <button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>
-                        <!--<button type="submit" class="collapse" id="realSubmitButton" hidden>Submit</button>-->
+                        <g:actionSubmit value="Save" class="btn pull-right"/>
+                        <!--<button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>-->
                         <div class="clearfix"></div>
                         <br>
-                    </form>
+                    </g:form>
 
                     <div class="col-md-6">
                         <div class="panel panel-default">

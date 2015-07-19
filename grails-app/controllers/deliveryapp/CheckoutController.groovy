@@ -9,4 +9,5 @@ class CheckoutController {
 
         render (view: "index", model: [restaurant: restaurant, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
+
 }
