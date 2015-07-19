@@ -40,7 +40,7 @@
 			</div>
 			<nav id="mainmenu" class="mainmenu">
 				<ul>
-					<li class="logo-wrapper"><a href="${request.contextPath}/theme/index.html"><img src="${request.contextPath}/theme/img/mPurpose-logo.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
+					<li class="logo-wrapper"><a href="${request.contextPath}/theme/index.html"><img src="${request.contextPath}/theme/img/eatBay.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
 					<li class="active">
 						<a href="${request.contextPath}/theme/index.html">Home</a>
 					</li>
