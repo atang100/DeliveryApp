@@ -7,7 +7,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 
-<g:applyLayout name="main" params="[test: 3434243]">
+<g:applyLayout name="main">
 
     <div class="section">
         <div class="container">

@@ -127,8 +127,9 @@
             $(".flash").fadeTo(300, 0).slideUp(300, function(){
                 $(this).remove();
             });
-        }, 5000);
+        }, 4000);
     </script>
+
 </g:applyLayout>
 
 </body>
