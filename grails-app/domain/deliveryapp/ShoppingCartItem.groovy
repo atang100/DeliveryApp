@@ -1,5 +1,7 @@
 package deliveryapp
 
+import java.text.DecimalFormat
+
 class ShoppingCartItem {
 
     String itemId
@@ -11,5 +13,10 @@ class ShoppingCartItem {
     static belongsTo = [shoppingCart: ShoppingCart]
 
     static constraints = {
+    }
+
+    public String convertPriceToString() {
+        DecimalFormat df = new DecimalFormat("#.00")
+        return df.format(totalPrice)
     }
 }

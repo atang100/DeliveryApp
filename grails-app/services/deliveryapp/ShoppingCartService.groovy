@@ -22,18 +22,17 @@ class ShoppingCartService {
         try {
             ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
             MenuItem menuItem = MenuItem.findByItemId(itemId)
-
-            List <ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems()
-
-            boolean successfullyIncrementItem = false;
+            List <ShoppingCartItem> shoppingCartItemList = shoppingCart.getShoppingCartItems().toList()
+            boolean successfullyIncrementItem = false
 
             for (int i = 0; i < shoppingCartItemList.size(); i++) {
-                if (shoppingCartItemList.get(i).getItemId().equals(shoppingCartId)) {
-                    ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(shoppingCartId)
+                System.println(shoppingCartItemList.get(i).itemId)
+                if (shoppingCartItemList.get(i).itemId.equals(itemId)) {
+                    ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId)
                     shoppingCartItem.quantity++
                     shoppingCartItem.totalPrice = shoppingCartItem.price*shoppingCartItem.quantity
                     shoppingCartItem.save(failOnError: true)
-                    successfullyIncrementItem = true;
+                    successfullyIncrementItem = true
                     break
                 }
             }
@@ -44,10 +43,10 @@ class ShoppingCartService {
                         itemName: menuItem.itemName,
                         quantity: 1,
                         price: menuItem.price,
-                        totalPrice: menuItem.price,
-                        shoppingCart: shoppingCart
+                        totalPrice: menuItem.price
                 )
-                shoppingCartItem.save(failOnError: true)
+                shoppingCart.addToShoppingCartItems(shoppingCartItem)
+                shoppingCart.save(failOnError: true)
             }
         } catch (Exception e) {
             System.println("Failure to increment item in cart!")
@@ -55,12 +54,14 @@ class ShoppingCartService {
         }
     }
 
-    def decreaseItemInCart(String shoppingCartId) {
+    def decrementItemInCart(String itemId, String shoppingCartId) {
         try {
-            ShoppingCartItem shoppingCartItem = ShoppingCartItem.get(shoppingCartId)
-            if (shoppingCartItem != null) {
+            ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId)
+            ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
+            if (shoppingCartItem != null && shoppingCart.shoppingCartItems.contains(shoppingCartItem)) {
                 shoppingCartItem.quantity--;
                 if (shoppingCartItem.quantity <= 0) {
+                    shoppingCart.removeFromShoppingCartItems(shoppingCartItem)
                     shoppingCartItem.delete()
                 } else {
                     shoppingCartItem.totalPrice = shoppingCartItem.quantity * shoppingCartItem.price

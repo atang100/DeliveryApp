@@ -7,7 +7,7 @@ class ShoppingCart {
     double deliveryCharge
     double total
 
-    static hasMany = [shoppingCartItems: ShoppingCart]
+    static hasMany = [shoppingCartItems: ShoppingCartItem]
 
     static constraints = {
     }

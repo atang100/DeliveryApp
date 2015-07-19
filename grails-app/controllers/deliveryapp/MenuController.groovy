@@ -12,27 +12,38 @@ class MenuController {
         List<MenuItem> menuList = restaurant.getMenuItems().asList()
 
         String shoppingCartId = ShoppingCartService.createCart()
+        ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
 
-        render (view: "index", model: [userType: userType, restaurant: restaurant, menuList: menuList, shoppingCartId: shoppingCartId])
+        List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>()
+
+        render (view: "index", model: [restaurant: restaurant, menuList: menuList, shoppingCartId: shoppingCartId, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 
     def incrementItem() {
+        System.println(getParams())
         String shoppingCartId = params.shoppingCartId
         String itemId = params.itemId
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         ShoppingCartService.incrementItemInCart(itemId, shoppingCartId)
 
+        List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
+
         //Render Cart
+        render(template:"/menu/cart", model:[shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 
     def decrementItem() {
+        System.println(getParams())
         String shoppingCartId = params.shoppingCartId
         String itemId = params.itemId
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
-        ShoppingCartService.decrementItemInCart(shoppingCartId)
+        ShoppingCartService.decrementItemInCart(itemId, shoppingCartId)
+
+        List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
 
         //Render Cart
+        render(template:"/menu/cart", model:[shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 }

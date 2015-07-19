@@ -14,7 +14,110 @@
 
 <body>
 <g:applyLayout name="main">
+    <!-- Page Title -->
+    <div class="section section-breadcrumbs">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>${restaurant.restName}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="section">
+        <div class="container">
+            <!-- Cart -->
+            <div class="col-md-5">
+                <div class="blog-post" id="cartDiv">
+                    <g:render template="cart" model="[shoppingCart: shoppingCart]" />
+                </div>
+            </div>
+            <!-- Menu -->
+            <div class="col-md-7">
+                <div class="blog-post">
+                    <h2>Appetizer</h2>
+                    <!-- Table -->
+                    <table class="table table-striped" data-toggle="table">
+                        <tbody>
+                        <g:each in="${menuList}" var="varMenu">
+                            <g:if test="${varMenu.type == 'appetizer'}">
+                                <tr>
+                                    <td><strong>${varMenu.itemName}</strong><br><br>
+                                        ${varMenu.description}
+                                    </td>
+                                    <td>$${varMenu.convertPriceToString()}</td>
+                                    <td class="col-md-2">
+                                        <button class="btn-grey" type="button" name="decrement${varMenu.itemName}"
+                                                onclick="decrementItem(${varMenu.itemId})">-</button>
+                                        <button class="btn-blue" type="button" name="increment${varMenu.itemName}"
+                                                onclick="incrementItem(${varMenu.itemId})">+</button>
+                                    </td>
+                                </tr>
+                            </g:if>
+                        </g:each>
+                        </tbody>
+                    </table>
+
+                    <h2>Mains</h2>
+                    <!-- Table -->
+                    <table class="table table-striped" data-toggle="table">
+                        <tbody>
+                        <g:each in="${menuList}" var="varMenu">
+                            <g:if test="${varMenu.type == 'mains'}">
+                                <tr>
+                                    <td><strong>${varMenu.itemName}</strong><br><br>
+                                        ${varMenu.description}
+                                    </td>
+                                    <td>$${varMenu.convertPriceToString()}</td>
+                                    <td class="col-md-2">
+                                        <button class="btn-grey" type="button" name="decrement${varMenu.itemName}"
+                                                onclick="decrementItem(${varMenu.itemId})">-</button>
+                                        <button class="btn-blue" type="button" name="increment${varMenu.itemName}"
+                                                onclick="incrementItem(${varMenu.itemId})">+</button>
+                                    </td>
+                                </tr>
+                            </g:if>
+                        </g:each>
+                        </tbody>
+                    </table>
+
+                    <h2>Desserts</h2>
+                    <!-- Table -->
+                    <table class="table table-striped" data-toggle="table">
+                        <tbody>
+                        <g:each in="${menuList}" var="varMenu">
+                            <g:if test="${varMenu.type == 'dessert'}">
+                                <tr>
+                                    <td><strong>${varMenu.itemName}</strong><br><br>
+                                        ${varMenu.description}
+                                    </td>
+                                    <td>$${varMenu.convertPriceToString()}</td>
+                                    <td class="col-md-2">
+                                        <button class="btn-grey" type="button" name="decrement${varMenu.itemName}"
+                                                onclick="decrementItem(${varMenu.itemId})">-</button>
+                                        <button class="btn-blue" type="button" name="increment${varMenu.itemName}"
+                                                onclick="incrementItem(${varMenu.itemId})">+</button>
+                                    </td>
+                                </tr>
+                            </g:if>
+                        </g:each>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function incrementItem(itemId) {
+            <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&itemId=' +itemId"/>
+        }
+        function decrementItem(itemId) {
+            <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&itemId=' +itemId"/>
+        }
+    </script>
 </g:applyLayout>
+
 </body>
 </html>

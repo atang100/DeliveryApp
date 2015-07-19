@@ -1,5 +1,7 @@
 package deliveryapp
 
+import java.text.DecimalFormat
+
 class MenuItem {
 
     String itemId
@@ -13,5 +15,10 @@ class MenuItem {
     static belongsTo = [restaurant: Restaurant]
 
     static constraints = {
+    }
+
+    public String convertPriceToString() {
+        DecimalFormat df = new DecimalFormat("#.00")
+        return df.format(price)
     }
 }
