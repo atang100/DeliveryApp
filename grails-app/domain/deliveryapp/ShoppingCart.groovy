@@ -19,7 +19,6 @@ class ShoppingCart {
         for (item in shoppingCartItems) {
             tempTotal += item.quantity*item.price
         }
-        tempTotal += 5 //Delivery Charge
         subTotal = tempTotal
 
         DecimalFormat df = new DecimalFormat("#.00")
@@ -28,14 +27,15 @@ class ShoppingCart {
 
     public String findTax() {
         findSubTotal()
-        tax = subTotal*0.13
+        double tempTotal = subTotal + 5 //Delivery Charge
+        tax = tempTotal*0.13
         DecimalFormat df = new DecimalFormat("#.00")
         return df.format(tax)
     }
 
     public String Total() {
         findTax()
-        total = subTotal + tax
+        total = subTotal + 5 + tax
         DecimalFormat df = new DecimalFormat("#.00")
         return df.format(total)
     }
