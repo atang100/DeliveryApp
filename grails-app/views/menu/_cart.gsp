@@ -5,12 +5,12 @@
 
 <table class="table table-striped" data-toggle="table">
     <thead>
-        <tr>
-            <th>Menu Item</th>
-            <th>Qty</th>
-            <th>Price</th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>Menu Item</th>
+        <th>Qty</th>
+        <th>Price</th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
     <g:each in="${shoppingCartItemList}" var="varCart">
@@ -26,6 +26,31 @@
             </td>
         </tr>
     </g:each>
+    <tr><td colspan="4">&nbsp;</td> </tr>
+    <tr>
+        <td colspan="2" class="text-right">
+            <strong>
+                Sub-total: $<br>
+                Delivery Fee: $<br>
+                GST / HST: $
+            </strong>
+        </td>
+        <td colspan="2" class="text-left">
+            ${shoppingCart.findSubTotal()} <br>
+            5.00 <br>
+            ${shoppingCart.findTax()}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="text-right text-danger">
+            <strong>
+                Grand Total: $
+            </strong>
+        </td>
+        <td colspan="2" class="text-left text-danger">
+            ${shoppingCart.getTotal()}
+        </td>
+    </tr>
     </tbody>
 </table>
 
