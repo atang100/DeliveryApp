@@ -17,6 +17,10 @@ class MenuController {
 
         List<ShoppingCartItem> shoppingCartItemList = new ArrayList<ShoppingCartItem>()
 
+        if (params.errorMsg != null && params.errorMsg.equals("noItemInCart")) {
+            flash.message = "No items have been added to your order.  Please add items to your order before checking out."
+        }
+
         render (view: "index", model: [restName: restaurant.restName, menuList: menuList, shoppingCartId: shoppingCartId, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 

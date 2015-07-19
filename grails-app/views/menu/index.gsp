@@ -27,6 +27,12 @@
 
     <div class="section">
         <div class="container">
+            <g:if test="${flash.message}">
+                <div class="flash fade-in alert alert-danger" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    ${flash.message}
+                </div>
+            </g:if>
             <!-- Cart -->
             <div class="col-md-5">
                 <div class="blog-post" id="cartDiv">
@@ -116,6 +122,12 @@
         function decrementItem(itemId) {
             <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+'${restName}' +'&itemId=' +itemId"/>
         }
+
+        window.setTimeout(function() {
+            $(".flash").fadeTo(300, 0).slideUp(300, function(){
+                $(this).remove();
+            });
+        }, 5000);
     </script>
 </g:applyLayout>
 
