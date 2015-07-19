@@ -28,7 +28,7 @@ class ShoppingCartService {
             for (int i = 0; i < shoppingCartItemList.size(); i++) {
                 System.println(shoppingCartItemList.get(i).itemId)
                 if (shoppingCartItemList.get(i).itemId.equals(itemId)) {
-                    ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId)
+                    ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemIdAndShoppingCart(itemId, shoppingCart)
                     shoppingCartItem.quantity++
                     shoppingCartItem.totalPrice = shoppingCartItem.price*shoppingCartItem.quantity
                     shoppingCartItem.save(failOnError: true)
@@ -56,8 +56,8 @@ class ShoppingCartService {
 
     def decrementItemInCart(String itemId, String shoppingCartId) {
         try {
-            ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId)
             ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
+            ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId, shoppingCart)
             if (shoppingCartItem != null && shoppingCart.shoppingCartItems.contains(shoppingCartItem)) {
                 shoppingCartItem.quantity--;
                 if (shoppingCartItem.quantity <= 0) {

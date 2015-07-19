@@ -51,10 +51,30 @@
             ${shoppingCart.findTotal()}
         </td>
     </tr>
+    <tr>
+        <td colspan="4">
+            <div class="col-md-4">
+                <g:link controller="home"
+                        action="index"
+                        class="btn btn-grey btn-block">Go Back</g:link>
+            </div>
+            <div class="col-md-4">
+                <g:link controller="menu"
+                        action="displayMenu"
+                        params="[restName: restName]"
+                        class="btn btn-grey btn-block">Clear</g:link>
+            </div>
+            <div class="col-md-4">
+                <g:link controller="checkout"
+                        action="index"
+                        params="[shoppingCartId: shoppingCart.id, restName: restName]"
+                        class="btn btn-blue btn-block">Checkout</g:link>
+            </div>
+        </td>
+    </tr>
     </tbody>
 </table>
-<g:link controller="checkout"
-        action="index"
-        params="[shoppingCartId: shoppingCart.id, restName: restName]"
-        class="btn btn-blue btn-block">Checkout</g:link>
+
+
+
 </html>

@@ -7,8 +7,9 @@ class MenuController {
     def ShoppingCartService
 
     def displayMenu() {
-
-        Restaurant restaurant = Restaurant.findByRestName(params.restaurantName)
+        System.println(params)
+        String restName = params.restName
+        Restaurant restaurant = Restaurant.findByRestName(restName)
         List<MenuItem> menuList = restaurant.getMenuItems().asList()
 
         String shoppingCartId = ShoppingCartService.createCart()
@@ -23,6 +24,7 @@ class MenuController {
         System.println(getParams())
         String shoppingCartId = params.shoppingCartId
         String itemId = params.itemId
+        String restName = params.restName
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         ShoppingCartService.incrementItemInCart(itemId, shoppingCartId)
@@ -30,13 +32,14 @@ class MenuController {
         List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
 
         //Render Cart
-        render(template:"/menu/cart", model:[shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
+        render(template:"/menu/cart", model:[restName: restName, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 
     def decrementItem() {
         System.println(getParams())
         String shoppingCartId = params.shoppingCartId
         String itemId = params.itemId
+        String restName = params.restName
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         ShoppingCartService.decrementItemInCart(itemId, shoppingCartId)
@@ -44,6 +47,6 @@ class MenuController {
         List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
 
         //Render Cart
-        render(template:"/menu/cart", model:[shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
+        render(template:"/menu/cart", model:[restName: restName, shoppingCart: shoppingCart, shoppingCartItemList: shoppingCartItemList])
     }
 }

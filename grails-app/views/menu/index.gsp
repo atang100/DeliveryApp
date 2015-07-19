@@ -111,10 +111,10 @@
 
     <script>
         function incrementItem(itemId) {
-            <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+this.restName +'&itemId=' +itemId"/>
+            <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+'${restName}' +'&itemId=' +itemId"/>
         }
         function decrementItem(itemId) {
-            <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+this.restName +'&itemId=' +itemId"/>
+            <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+'${restName}' +'&itemId=' +itemId"/>
         }
     </script>
 </g:applyLayout>

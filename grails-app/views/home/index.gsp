@@ -39,7 +39,7 @@
                                     <td>${varRestaurant.deliveryTime} minutes</td>
                                     <td>
                                         <g:link controller="menu" action="displayMenu"
-                                                params="[restaurantName: varRestaurant.restName]" class="btn btn-blue">Order Now</g:link></td>
+                                                params="[restName: varRestaurant.restName]" class="btn btn-blue">Order Now</g:link></td>
                                 </tr>
                             </g:each>
                             </tbody>
@@ -54,7 +54,7 @@
                             <div class="portfolio-item">
                                 <span class="centered center-block">
                                     <g:link controller="menu" action="displayMenu"
-                                            params="[restaurantName: varMpr.restName]">
+                                            params="[restName: varMpr.restName]">
                                         <img src="http://lorempixel.com/100/100/food/${varStatus.toString()}"
                                              class="img-responsive centered" style="margin: 0 auto;"/>
                                     </g:link>
