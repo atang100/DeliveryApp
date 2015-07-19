@@ -19,4 +19,9 @@ class ShoppingCartItem {
         DecimalFormat df = new DecimalFormat("#.00")
         return df.format(totalPrice)
     }
+
+    public String convertIndividualPriceToString() {
+        DecimalFormat df = new DecimalFormat("#.00")
+        return df.format(price)
+    }
 }

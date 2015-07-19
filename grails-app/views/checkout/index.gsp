@@ -84,11 +84,11 @@
                                    id="streetNameErrorMessage">Invalid Street Name.</label>
                             <br>
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" placeholder="CW" required>
+                            <input type="text" class="form-control" id="city" placeholder="City" required>
                             <label for="city" class="text-danger collapse" id="cityErrorMessage">Invalid City.</label>
                             <br>
                             <label for="postalCode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalCode" placeholder="CW" required>
+                            <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
                             <label for="postalCode" class="text-danger collapse"
                                    id="postalCodeErrorMessage">Invalid Postal Code.</label>
                             <br>
@@ -114,35 +114,42 @@
                             <table class="table table-striped text-center">
                                 <thead>
                                 <tr>
+                                    <th class="text-center">Item Name</th>
+                                    <th class="text-center">Price (each)</th>
                                     <th class="text-center">Quantity</th>
-                                    <th class="text-center">Product Name</th>
-                                    <th class="text-center">Price</th>
+                                    <th class="text-center">&nbsp;</th>
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <g:each in="${shoppingCartItemList}" var="item">
+                                    <tr>
+                                        <td>${item.itemName}
+                                        </td>
+                                        <td>$ ${item.convertIndividualPriceToString()}</td>
+                                        <td>${item.quantity}</td>
+                                        <td>$ ${item.convertPriceToString()}</td>
+                                    </tr>
+                                </g:each>
                                 <tr>
-                                    <td>1</td>
-                                    <td>A New Hope<br> <img src="img/images/Romance5.png" alt="Item Name" height="120">
-                                    </td>
-                                    <td>$ 13.99</td>
+                                    <td colspan="4">&nbsp;</td>
                                 </tr>
+
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td class="text-right"><strong>Subtotal:</strong> <br>
+                                    <td class="text-right" colspan="2"><strong>Subtotal:</strong> <br>
                                         <strong>Shipping Fee:</strong> <br>
                                         <strong>GST & HST:</strong> <br>
                                     </td>
                                     <td>
-                                        $ 33.97 <br>
+                                        $ ${shoppingCart.findSubTotal()} <br>
                                         $&nbsp; 5.00 <br>
-                                        $&nbsp; 5.07 <br>
-
+                                        $&nbsp; ${shoppingCart.findTax()} <br>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
-                                    <td class="text-right text-danger"><strong>Grand Total:</strong></td>
-                                    <td class="text-danger">$ 44.04</td>
+                                    <td class="text-right text-danger" colspan="2"><strong>Grand Total:</strong></td>
+                                    <td class="text-danger">$ ${shoppingCart.findTotal()}</td>
                                 </tr>
                                 </tbody>
                             </table>
