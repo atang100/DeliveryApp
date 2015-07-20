@@ -15,28 +15,24 @@
 <body>
 <g:applyLayout name="main">
     <!-- Page Title -->
-    <div class="section section-breadcrumbs">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h1>${restName}</h1>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="section">
-        <div class="container">
+    <div class="container">
+
+        <div class="col-md-12 blog-post">
+            <h1>${restName}<hr></h1>
+
+
             <g:if test="${flash.message}">
                 <div class="flash fade-in alert alert-danger" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
                     ${flash.message}
                 </div>
             </g:if>
-            <!-- Cart -->
+        <!-- Cart -->
             <div class="col-md-5">
                 <div class="blog-post" id="cartDiv">
-                    <g:render template="cart" model="[shoppingCart: shoppingCart, restName: restName]" />
+                    <g:render template="cart" model="[shoppingCart: shoppingCart, restName: restName, shoppingCartItemList: shoppingCartItemList]"/>
                 </div>
             </div>
             <!-- Menu -->
@@ -114,7 +110,6 @@
             </div>
         </div>
     </div>
-
     <script>
         function incrementItem(itemId) {
             <g:remoteFunction update="cartDiv" controller="menu" action="incrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+'${restName}' +'&itemId=' +itemId"/>
@@ -123,8 +118,8 @@
             <g:remoteFunction update="cartDiv" controller="menu" action="decrementItem" params="'shoppingCartId='+${shoppingCartId} + '&restName='+'${restName}' +'&itemId=' +itemId"/>
         }
 
-        window.setTimeout(function() {
-            $(".flash").fadeTo(300, 0).slideUp(300, function(){
+        window.setTimeout(function () {
+            $(".flash").fadeTo(300, 0).slideUp(300, function () {
                 $(this).remove();
             });
         }, 4000);

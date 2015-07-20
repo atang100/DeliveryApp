@@ -110,8 +110,13 @@
                             <g:hiddenField name="shoppingCartId" value="${shoppingCart.id}" />
                             <g:hiddenField name="restName" value="${restaurant.restName}" />
                         </div>
+
                         <g:actionSubmit value="Complete Order" class="hidden" id="formSubmit" action="index"/>
-                        <button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>
+                        <g:link controller="menu"
+                                action="redisplayCart"
+                                params="[shoppingCartId: shoppingCart.id, restName: restaurant.restName]"
+                                class="btn btn-grey col-md-6">Go Back</g:link>
+                        <button onclick="fakeSubmit();" type="button" class="btn btn-blue col-md-6">Process My Order</button>
 
                         <div class="clearfix"></div>
                         <br>

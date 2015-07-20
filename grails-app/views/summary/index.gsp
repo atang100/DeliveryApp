@@ -6,42 +6,75 @@
 --%>
 
 <%@ page contentType="text/html;charset=UTF-8" %>
-<g:applyLayout name="main" params="[test: 3434243]">
-    <div class="section">
-        <div class="container">
-            <div class="row">
-                <div class="blog-post col-md-12">
-                    <br>
-                    <h1>Summary</h1><hr> <br>
-                    <div id="map-container" class="col-md-6" style="height: 500px;"></div>
-                    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
-                    <script>
+<g:applyLayout name="main">
 
-                        function init_map() {
-                            var var_location = new google.maps.LatLng(45.430817,12.331516);
+    <div class="container">
+        <div class="row">
+            <div class="blog-post col-md-12">
+                <br>
 
-                            var var_mapoptions = {
-                                center: var_location,
-                                zoom: 14
-                            };
+                <h1>Summary - ${restaurant.restName}</h1><hr>
 
-                            var var_marker = new google.maps.Marker({
-                                position: var_location,
-                                map: var_map,
-                                title:"Venice"});
+                <g:form name="myForm" action="" class="col-md-6">
+                    <h3>Billing Information</h3>
+                </g:form>
 
-                            var var_map = new google.maps.Map(document.getElementById("map-container"),
-                                    var_mapoptions);
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><strong>Items in Cart</strong></div>
 
-                            var_marker.setMap(var_map);
+                        <div class="panel-body">
+                            <p>The following items are available and ready for checkout. A confirmation will be provided once the order has been processed.</p>
+                        </div>
 
-                        }
+                        <!-- Table -->
+                        <table class="table table-striped text-center">
+                            <thead>
+                            <tr>
+                                <th class="text-center">Item Name</th>
+                                <th class="text-center">Price (each)</th>
+                                <th class="text-center">Quantity</th>
+                                <th class="text-center">&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <g:each in="${shoppingCartItemList}" var="item">
+                                <tr>
+                                    <td>${item.itemName}
+                                    </td>
+                                    <td>$ ${item.convertIndividualPriceToString()}</td>
+                                    <td>${item.quantity}</td>
+                                    <td>$ ${item.convertPriceToString()}</td>
+                                </tr>
+                            </g:each>
+                            <tr>
+                                <td colspan="4">&nbsp;</td>
+                            </tr>
 
-                        google.maps.event.addDomListener(window, 'load', init_map);
-
-                    </script>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="text-right" colspan="2"><strong>Subtotal:</strong> <br>
+                                    <strong>Shipping Fee:</strong> <br>
+                                    <strong>GST & HST:</strong> <br>
+                                </td>
+                                <td>
+                                    $ ${shoppingCart.findSubTotal()} <br>
+                                    $&nbsp; 5.00 <br>
+                                    $&nbsp; ${shoppingCart.findTax()} <br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td class="text-right text-danger" colspan="2"><strong>Grand Total:</strong></td>
+                                <td class="text-danger">$ ${shoppingCart.findTotal()}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
 </g:applyLayout>

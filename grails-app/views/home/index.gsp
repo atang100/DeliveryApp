@@ -33,7 +33,7 @@
                                     <td><img src="http://lorempixel.com/200/125/food/${varStatus % 11}"
                                              class="img-responsive"/></td>
                                     <td><strong>${varRestaurant.restName}</strong><br><br>
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                        ${varRestaurant.description}
                                     </td>
                                     <td>$5.00</td>
                                     <td>${varRestaurant.deliveryTime} minutes</td>
