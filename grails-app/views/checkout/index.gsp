@@ -7,11 +7,12 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <g:applyLayout name="main" params="[test: 3434243]">
-    <div class="section">
+    <div class="">
         <div class="container">
             <div class="row">
                 <div class="blog-post col-md-12">
                     <br>
+
                     <h1>Checkout - ${restaurant.restName}</h1><hr>
 
                     <div id="errorAlert" class="alert alert-danger collapse">
@@ -25,10 +26,10 @@
                               class="collapse"><strong>Invalid Expiry Date!</strong> The expected format is MMYY. (ex. 0917 for September 2017) <br>
                         </span>
                         <span id="ccCwErrorAlert"
-                              class="collapse"><strong>Invalid CW!</strong> Please enter a valid CW.<br></span>
+                              class="collapse"><strong>Invalid CVV!</strong> Please enter a valid CVV.<br></span>
 
                         <span id="streetNameErrorAlert"
-                              class="collapse"><strong>Street Name!</strong> Cannot be blank.<br></span>
+                              class="collapse"><strong>Invalid Street Name!</strong> Cannot be blank.<br></span>
                         <span id="cityErrorAlert"
                               class="collapse"><strong>Invalid City!</strong> Please enter a valid city.<br></span>
                         <span id="postalCodeErrorAlert"
@@ -36,13 +37,15 @@
                         </span>
                     </div>
 
-                    <g:form name="myForm" action="" class="col-md-6">
+                    <g:form name="myForm" id="myForm" controller="summary" action="index" class="col-md-6">
                         <h3>Billing Information</h3>
                         <br>
 
                         <div class="form-group">
                             <label for="fullName">Full Name</label>
-                            <input type="text" class="form-control" id="fullName" placeholder="Full Name" required>
+                            <g:textField name="fullName" class="form-control" id="fullName" placeholder="Full Name"
+                                         required="required"></g:textField>
+                            <!--<input type="text" class="form-control" id="fullName" placeholder="Full Name" required>-->
                             <label for="fullName" class="text-danger collapse"
                                    id="fNameErrorMessage">Full Name cannot be blank.</label>
                         </div>
@@ -51,26 +54,29 @@
                             <label for="ccNum">Credit Card Number</label>
 
                             <div class="input-group">
-                                <input type="number" id="ccNum" class="form-control col-md-6" maxlength="16"
-                                       placeholder="Credit Card Number" aria-label="..." required>
+                                <g:textField name="ccNum" id="ccNum" class="form-control col-md-6" maxlength="19"
+                                             placeholder="Credit Card Number" required="required"></g:textField>
+                                <!--<input type="text" id="ccNum" class="form-control col-md-6" maxlength="19"
+                                       placeholder="Credit Card Number" aria-label="..." required>-->
                                 <span class="input-group-addon">
-                                    <select id="lunch" class="selectpicker" data-live-search="true" title="Visa">
-                                        <option>Visa</option>
-                                        <option>Mastercard</option>
-                                        <option>Amex</option>
-                                    </select></span>
+                                    <g:select name="ccType"
+                                              from="${Arrays.asList("Visa", "Mastercard", "American Express")}"
+                                              value="Visa" class="selectpicker" id="ccType"/>
+                                </span>
                             </div>
                             <label for="ccNum" class="text-danger collapse"
                                    id="ccNumErrorMessage">Invalid Credit Card Number.</label>
                             <br>
                             <label for="ccExpDate">Expiry Date</label>
-                            <input type="number" class="form-control" id="ccExpDate" maxlength="4"
-                                   placeholder="Expiry Date MMYY" required>
+                            <g:textField name="ccExpDate" class="form-control" id="ccExpDate" maxlength="4"
+                                         placeholder="Expiry Date MMYY" required="required"></g:textField>
+
                             <label for="ccExpDate" class="text-danger collapse"
                                    id="expDateErrorMessage">Invalid Expiry Date.</label>
                             <br>
                             <label for="ccCw">CVV</label>
-                            <input type="text" class="form-control" id="ccCw" placeholder="CVV" required maxlength="4">
+                            <g:textField name="ccCw" class="form-control" id="ccCw" placeholder="CVV" maxlength="4"
+                                         required="required"></g:textField>
                             <label for="ccCw" class="text-danger collapse" id="cwErrorMessage">Invalid CVV.</label>
                         </div>
                         <hr>
@@ -80,25 +86,33 @@
 
                         <div class="form-group">
                             <label for="streetName">Street Name</label>
-                            <input type="text" class="form-control" id="streetName" placeholder="Address" required>
+                            <g:textField name="streetName" class="form-control" id="streetName" placeholder="Address"
+                                         required="required"></g:textField>
                             <label for="streetName" class="text-danger collapse"
                                    id="streetNameErrorMessage">Invalid Street Name.</label>
                             <br>
                             <label for="city">City</label>
-                            <g:select name="user.age" from="${Arrays.asList("Ottawa", "Toronto")}"
-                                  noSelection="['':'-Choose City-']" class="form-control" id="city"/>
-                            <label for="city" class="text-danger collapse" id="cityErrorMessage">Please select a city.</label>
+                            <g:select name="city" from="${Arrays.asList("Ottawa", "Toronto")}"
+                                      noSelection="['': '-Choose City-']" class="form-control" id="city"/>
+                            <label for="city" class="text-danger collapse"
+                                   id="cityErrorMessage">Please select a city.</label>
                             <br>
                             <label for="postalCode">Postal Code</label>
-                            <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
+                            <g:textField name="postalCode" class="form-control" id="postalCode"
+                                         placeholder="Postal Code" required="required"></g:textField>
+
                             <label for="postalCode" class="text-danger collapse"
                                    id="postalCodeErrorMessage">Invalid Postal Code.</label>
                             <br>
                             <label for="phone">Phone</label>
-                            <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
+                            <g:textField name="phone" class="form-control" id="phone"
+                                         placeholder="Phone Number"></g:textField>
+                            <g:hiddenField name="shoppingCartId" value="${shoppingCart.id}" />
+                            <g:hiddenField name="restName" value="${restaurant.restName}" />
                         </div>
                         <g:actionSubmit value="Complete Order" class="hidden" id="formSubmit" action="index"/>
                         <button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>
+
                         <div class="clearfix"></div>
                         <br>
                     </g:form>
@@ -188,7 +202,7 @@
     function validateCcNumber() {
         //insert validation
         var isValid = true;
-        if ($('#ccNum').val().toString().length < 13 || $('#ccNum').val().toString().length > 16) {
+        if ($('#ccNum').val().toString().length < 13 || $('#ccNum').val().toString().length > 19) {
             $('#ccNumErrorMessage').show();
             isValid = false;
         }
@@ -325,9 +339,11 @@
 
         if (readyToSubmit) {
             $("#errorAlert").hide();
-            $("#formSubmit").submit();
+            $('#formSubmit').click();
         }
-        else { $("#errorAlert").show(); }
+        else {
+            $("#errorAlert").show();
+        }
     }
 
     function hideError() {
