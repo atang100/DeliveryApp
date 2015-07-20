@@ -11,13 +11,33 @@
     <div class="container">
         <div class="row">
             <div class="blog-post col-md-12">
-                <br>
 
-                <h1>Summary - ${restaurant.restName}</h1><hr>
+                <h1>Order Summary - ${restaurant.restName}</h1><hr>
 
-                <g:form name="myForm" action="" class="col-md-6">
-                    <h3>Billing Information</h3>
-                </g:form>
+                <div class="col-md-6">
+                    <h3><strong>Order #: </strong> 4578215</h3>
+                    <h4><strong>Date: </strong> 22/07/2015</h4>
+                    <br>
+                    <p>Thank you placing your order! Your order has been processed. You will be notified once it has shipped. </p>
+                    <p>Please keep this receipt for your records. </p>
+                    <br> <br>
+
+                    <h4>Payment Information</h4>
+                    <p><strong>Credit Card Type: </strong> ${ccType}</p>
+                    <p><strong>Credit Card Number: </strong> ${ccNum}</p>
+                    <p><strong>Amount Charged: </strong> $${shoppingCart.findTotal()}</p>
+
+                    <br>
+
+                    <h4>Delivery Information</h4>
+                    <p><strong>Receipient Name: </strong> ${fullName}</p>
+                    <p><strong>Address: </strong><br>
+                        ${streetName},<br>
+                        ${city}, ON<br>
+                        ${postalCode}
+                    </p>
+                    <p><strong>Phone Number: </strong> ${phone}</p>
+                </div>
 
                 <div class="col-md-6">
                     <div class="panel panel-default">

@@ -6,10 +6,10 @@ class SummaryController {
         System.println(params)
 
         String fullName = params.fullName
-        String creditCardNumber = params.creditCardNumber
-        String creditCardType = params.creditCardType
-        String expiryDate = params.expiryDate
-        String cvv = params.cvv
+        String ccNum = params.ccNum
+        String ccType = params.ccType
+        String ccExpDate = params.ccExpDate
+        String ccCw = params.ccCw
 
         String streetName = params.streetName
         String city = params.city
@@ -19,16 +19,17 @@ class SummaryController {
         String restName = params.restName
         String shoppingCartId = params.shoppingCartId
 
+        String blurredCCNum = ccNum.substring(0,4) + "********" + ccNum.substring(ccNum.length() - 4)
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         Restaurant restaurant = Restaurant.findByRestName(restName)
         List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
 
         render (view: "index", model: [fullName: fullName,
-                                       creditCardNumber: creditCardNumber,
-                                       creditCardType: creditCardType,
-                                       expiryDate: expiryDate,
-                                       cvv: cvv,
+                                       ccNum: blurredCCNum,
+                                       ccType: ccType,
+                                       ccExpDate: ccExpDate,
+                                       ccCw: ccCw,
                                        streetName: streetName,
                                        city: city,
                                        postalCode: postalCode,

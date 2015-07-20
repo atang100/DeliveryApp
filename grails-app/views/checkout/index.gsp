@@ -11,7 +11,6 @@
         <div class="container">
             <div class="row">
                 <div class="blog-post col-md-12">
-                    <br>
 
                     <h1>Checkout - ${restaurant.restName}</h1><hr>
 
@@ -105,7 +104,7 @@
                                    id="postalCodeErrorMessage">Invalid Postal Code.</label>
                             <br>
                             <label for="phone">Phone</label>
-                            <g:textField name="phone" class="form-control" id="phone"
+                            <g:textField name="phone" class="form-control" id="phone" maxlength="10"
                                          placeholder="Phone Number"></g:textField>
                             <g:hiddenField name="shoppingCartId" value="${shoppingCart.id}" />
                             <g:hiddenField name="restName" value="${restaurant.restName}" />
