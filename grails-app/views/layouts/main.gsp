@@ -45,7 +45,7 @@
 						<a href="/DeliveryApp/home">Home</a>
 					</li>
 					<li>
-						<a href="/DeliveryApp/contactUs">Contact Us</a>
+						<a href="/DeliveryApp/about">About Us</a>
 					</li>
 				</ul>
 			</nav>

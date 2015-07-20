@@ -1,6 +1,6 @@
 package deliveryapp
 
-class ContactUsController {
+class AboutController {
 
     def index() {
         render (view: "index")

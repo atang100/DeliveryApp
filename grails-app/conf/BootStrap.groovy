@@ -10,7 +10,7 @@ class BootStrap {
         restaurant2.save(failOnError: true);
         Restaurant restaurant3 = new Restaurant(restName: "Five Guys", category: "most popular", description: "Voted once of the best burgers in the world that serves fresh food.", phoneNumber: "613-836-1235", deliveryTime: 50);
         restaurant3.save(failOnError: true);
-        Restaurant restaurant4 = new Restaurant(restName: "Montana's", category: "most popular", description: "A Canadian restaurant that is famous for in-house smoked por ribs.", phoneNumber: "613-828-3234", deliveryTime: 30);
+        Restaurant restaurant4 = new Restaurant(restName: "Montanas", category: "most popular", description: "A Canadian restaurant that is famous for in-house smoked por ribs.", phoneNumber: "613-828-3234", deliveryTime: 30);
         restaurant4.save(failOnError: true);
         Restaurant restaurant5 = new Restaurant(restName: "Turkish Village", category: "most popular", description: "Started by Mr.Chan, turkish village has been known to serve the best turkish food in ottawa at affordable.", phoneNumber: "613-324-3464", deliveryTime: 25);
         restaurant5.save(failOnError: true);
