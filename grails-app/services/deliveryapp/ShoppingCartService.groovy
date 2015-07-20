@@ -57,7 +57,7 @@ class ShoppingCartService {
     def decrementItemInCart(String itemId, String shoppingCartId) {
         try {
             ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
-            ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemId(itemId, shoppingCart)
+            ShoppingCartItem shoppingCartItem = ShoppingCartItem.findByItemIdAndShoppingCart(itemId, shoppingCart)
             if (shoppingCartItem != null && shoppingCart.shoppingCartItems.contains(shoppingCartItem)) {
                 shoppingCartItem.quantity--;
                 if (shoppingCartItem.quantity <= 0) {
