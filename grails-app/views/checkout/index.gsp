@@ -11,7 +11,8 @@
         <div class="container">
             <div class="row">
                 <div class="blog-post col-md-12">
-                    <h2>Checkout</h2>
+                    <br>
+                    <h1>Checkout - ${restaurant.restName}</h1><hr>
 
                     <div id="errorAlert" class="alert alert-danger collapse">
                         <button type="button" class="close" onclick="hideError();">×</button>
@@ -35,7 +36,7 @@
                         </span>
                     </div>
 
-                    <g:form name="myForm" action="save" id="1" class="col-md-6">
+                    <g:form name="myForm" action="" class="col-md-6">
                         <h3>Billing Information</h3>
                         <br>
 
@@ -50,7 +51,7 @@
                             <label for="ccNum">Credit Card Number</label>
 
                             <div class="input-group">
-                                <input type="text" id="ccNum" class="form-control col-md-6" maxlength="16"
+                                <input type="number" id="ccNum" class="form-control col-md-6" maxlength="16"
                                        placeholder="Credit Card Number" aria-label="..." required>
                                 <span class="input-group-addon">
                                     <select id="lunch" class="selectpicker" data-live-search="true" title="Visa">
@@ -63,14 +64,14 @@
                                    id="ccNumErrorMessage">Invalid Credit Card Number.</label>
                             <br>
                             <label for="ccExpDate">Expiry Date</label>
-                            <input type="text" class="form-control" id="ccExpDate" maxlength="4"
+                            <input type="number" class="form-control" id="ccExpDate" maxlength="4"
                                    placeholder="Expiry Date MMYY" required>
                             <label for="ccExpDate" class="text-danger collapse"
                                    id="expDateErrorMessage">Invalid Expiry Date.</label>
                             <br>
-                            <label for="ccCw">CW</label>
-                            <input type="text" class="form-control" id="ccCw" placeholder="CW" required>
-                            <label for="ccCw" class="text-danger collapse" id="cwErrorMessage">Invalid CW.</label>
+                            <label for="ccCw">CVV</label>
+                            <input type="text" class="form-control" id="ccCw" placeholder="CVV" required maxlength="4">
+                            <label for="ccCw" class="text-danger collapse" id="cwErrorMessage">Invalid CVV.</label>
                         </div>
                         <hr>
 
@@ -84,8 +85,9 @@
                                    id="streetNameErrorMessage">Invalid Street Name.</label>
                             <br>
                             <label for="city">City</label>
-                            <input type="text" class="form-control" id="city" placeholder="City" required>
-                            <label for="city" class="text-danger collapse" id="cityErrorMessage">Invalid City.</label>
+                            <g:select name="user.age" from="${Arrays.asList("Ottawa", "Toronto")}"
+                                  noSelection="['':'-Choose City-']" class="form-control" id="city"/>
+                            <label for="city" class="text-danger collapse" id="cityErrorMessage">Please select a city.</label>
                             <br>
                             <label for="postalCode">Postal Code</label>
                             <input type="text" class="form-control" id="postalCode" placeholder="Postal Code" required>
@@ -95,8 +97,8 @@
                             <label for="phone">Phone</label>
                             <input type="tel" class="form-control" id="phone" placeholder="Phone Number">
                         </div>
-                        <g:actionSubmit value="Save" class="btn pull-right"/>
-                        <!--<button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>-->
+                        <g:actionSubmit value="Complete Order" class="hidden" id="formSubmit" action="index"/>
+                        <button onclick="fakeSubmit();" type="button" class="btn pull-right">Process My Order</button>
                         <div class="clearfix"></div>
                         <br>
                     </g:form>
@@ -160,3 +162,176 @@
         </div>
     </div>
 </g:applyLayout>
+
+<script>
+    $('#fullName').focusout(validateFullName);
+    $('#ccNum').focusout(validateCcNumber);
+    $('#ccExpDate').focusout(validateExpDate);
+    $('#ccCw').focusout(validateCw);
+    $('#streetName').focusout(validateStreetName);
+    $('#city').focusout(validateCity);
+    $('#postalCode').focusout(validatePostalCode);
+
+    function validateFullName() {
+        //insert validation
+        var isValid = true;
+        if ($('#fullName').val() == "") {
+            $('#fNameErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#fNameErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validateCcNumber() {
+        //insert validation
+        var isValid = true;
+        if ($('#ccNum').val().toString().length < 13 || $('#ccNum').val().toString().length > 16) {
+            $('#ccNumErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#ccNumErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validateExpDate() {
+        //insert validation
+        var isValid = true;
+        if ($('#ccExpDate').val().toString().length != 4) {
+            $('#expDateErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#expDateErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validateCw() {
+        //insert validation
+        var isValid = true;
+        if ($('#ccCw').val() == "" || $('#ccCw').val().length < 3 || $('#ccCw').val().length > 4) {
+            $('#cwErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#cwErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validateStreetName() {
+        //insert validation
+        var isValid = true;
+        if ($('#streetName').val() == "") {
+            $('#streetNameErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#streetNameErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validateCity() {
+        //insert validation
+        var isValid = true;
+        if ($('#city').val() == "") {
+            $('#cityErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#cityErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+    function validatePostalCode() {
+        //insert validation
+        var isValid = true;
+        if ($('#postalCode').val() == "") {
+            $('#postalCodeErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#postalCodeErrorMessage').hide();
+        }
+        return isValid;
+    }
+
+
+    //for the submit button
+    function fakeSubmit() {
+        var readyToSubmit = true;
+        if (!validateFullName()) {
+            $("#fNameErrorAlert").show();
+            readyToSubmit = false;
+        }
+        else {
+            $("#fNameErrorAlert").hide();
+        }
+
+        if (!validateCcNumber()) {
+            $("#ccNumErrorAlert").show();
+            readyToSubmit = false;
+        }
+        else {
+            $("#ccNumErrorAlert").hide();
+        }
+
+        if (!validateExpDate()) {
+            readyToSubmit = false;
+            $("#ccExpErrorAlert").show();
+        }
+        else {
+            $("#ccExpErrorAlert").hide();
+        }
+
+        if (!validateCw()) {
+            readyToSubmit = false;
+            $("#ccCwErrorAlert").show();
+        }
+        else {
+            $("#ccCwErrorAlert").hide();
+        }
+
+        if (!validateStreetName()) {
+            readyToSubmit = false;
+            $("#streetNameErrorAlert").show();
+        }
+        else {
+            $("#streetNameErrorAlert").hide();
+        }
+
+        if (!validateCity()) {
+            readyToSubmit = false;
+            $("#cityErrorAlert").show();
+        }
+        else {
+            $("#cityErrorAlert").hide();
+        }
+
+        if (!validatePostalCode()) {
+            readyToSubmit = false;
+            $("#postalCodeErrorAlert").show();
+        }
+        else {
+            $("#postalCodeErrorAlert").hide();
+        }
+
+        if (readyToSubmit) {
+            $("#errorAlert").hide();
+            $("#formSubmit").submit();
+        }
+        else { $("#errorAlert").show(); }
+    }
+
+    function hideError() {
+        $("#errorAlert").hide();
+    }
+
+</script>
