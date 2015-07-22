@@ -14,28 +14,30 @@ class SummaryController {
         String streetName = params.streetName
         String city = params.city
         String postalCode = params.postalCode
+        String email = params.emailAddress
         String phone = params.phone
 
         String restName = params.restName
         String shoppingCartId = params.shoppingCartId
 
-        String blurredCCNum = ccNum.substring(0,4) + "********" + ccNum.substring(ccNum.length() - 4)
+        String blurredCCNum = ccNum.substring(0, 4) + "********" + ccNum.substring(ccNum.length() - 4)
 
         ShoppingCart shoppingCart = ShoppingCart.get(shoppingCartId)
         Restaurant restaurant = Restaurant.findByRestName(restName)
         List<ShoppingCartItem> shoppingCartItemList = ShoppingCartItem.findAllByShoppingCart(shoppingCart)
 
-        render (view: "index", model: [fullName: fullName,
-                                       ccNum: blurredCCNum,
-                                       ccType: ccType,
-                                       ccExpDate: ccExpDate,
-                                       ccCw: ccCw,
-                                       streetName: streetName,
-                                       city: city,
-                                       postalCode: postalCode,
-                                       phone: phone,
-                                       restaurant: restaurant,
-                                       shoppingCart: shoppingCart,
-                                       shoppingCartItemList: shoppingCartItemList])
+        render(view: "index", model: [fullName            : fullName,
+                                      ccNum               : blurredCCNum,
+                                      ccType              : ccType,
+                                      ccExpDate           : ccExpDate,
+                                      ccCw                : ccCw,
+                                      streetName          : streetName,
+                                      city                : city,
+                                      postalCode          : postalCode,
+                                      email               : email,
+                                      phone               : phone,
+                                      restaurant          : restaurant,
+                                      shoppingCart        : shoppingCart,
+                                      shoppingCartItemList: shoppingCartItemList])
     }
 }

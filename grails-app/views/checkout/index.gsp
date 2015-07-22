@@ -17,22 +17,29 @@
                     <div id="errorAlert" class="alert alert-danger collapse">
                         <button type="button" class="close" onclick="hideError();">×</button>
                         <span id="fNameErrorAlert"
-                              class="collapse"><strong>Invalid Full Name!</strong> Cannot be blank.<br></span>
+                              class="collapse customValidationAlert"><strong>Invalid Full Name!</strong> Cannot be blank.<br>
+                        </span>
                         <span id="ccNumErrorAlert"
                               class="collapse"><strong>Invalid Credit Card Number!</strong> Please enter a valid credit card number.<br>
                         </span>
                         <span id="ccExpErrorAlert"
-                              class="collapse"><strong>Invalid Expiry Date!</strong> The expected format is MMYY. (ex. 0917 for September 2017) <br>
+                              class="collapse customValidationAlert"><strong>Invalid Expiry Date!</strong> The expected format is MMYY. (ex. 0917 for September 2017) <br>
                         </span>
                         <span id="ccCwErrorAlert"
-                              class="collapse"><strong>Invalid CVV!</strong> Please enter a valid CVV.<br></span>
+                              class="collapse customValidationAlert"><strong>Invalid CVV!</strong> Please enter a valid CVV.<br>
+                        </span>
 
                         <span id="streetNameErrorAlert"
-                              class="collapse"><strong>Invalid Street Name!</strong> Cannot be blank.<br></span>
+                              class="collapse customValidationAlert"><strong>Invalid Street Name!</strong> Cannot be blank.<br>
+                        </span>
                         <span id="cityErrorAlert"
-                              class="collapse"><strong>Invalid City!</strong> Please enter a valid city.<br></span>
+                              class="collapse customValidationAlert"><strong>Invalid City!</strong> Please enter a valid city.<br>
+                        </span>
                         <span id="postalCodeErrorAlert"
-                              class="collapse"><strong>Invalid Postal Code!</strong> Please enter a valid postal code. <br>
+                              class="collapse customValidationAlert"><strong>Invalid Postal Code!</strong> Please enter a valid postal code. <br>
+                        </span>
+                        <span id="emailErrorAlert"
+                              class="collapse customValidationAlert"><strong>Invalid Email!</strong> Please enter a valid email address.<br>
                         </span>
                     </div>
 
@@ -98,16 +105,23 @@
                             <br>
                             <label for="postalCode">Postal Code</label>
                             <g:textField name="postalCode" class="form-control" id="postalCode"
-                                         placeholder="Postal Code" required="required"></g:textField>
+                                         placeholder="Postal Code" maxlength="7" required="required"></g:textField>
 
                             <label for="postalCode" class="text-danger collapse"
                                    id="postalCodeErrorMessage">Invalid Postal Code.</label>
                             <br>
+                            <label for="postalCode">Email</label>
+                            <g:textField name="emailAddress" class="form-control" id="emailAddress"
+                                         placeholder="Email" required="required"></g:textField>
+
+                            <label for="emailAddress" class="text-danger collapse"
+                                   id="emailAddressErrorMessage">Invalid Email.</label>
+                            <br>
                             <label for="phone">Phone</label>
                             <g:textField name="phone" class="form-control" id="phone" maxlength="10"
                                          placeholder="Phone Number"></g:textField>
-                            <g:hiddenField name="shoppingCartId" value="${shoppingCart.id}" />
-                            <g:hiddenField name="restName" value="${restaurant.restName}" />
+                            <g:hiddenField name="shoppingCartId" value="${shoppingCart.id}"/>
+                            <g:hiddenField name="restName" value="${restaurant.restName}"/>
                         </div>
 
                         <g:actionSubmit value="Complete Order" class="hidden" id="formSubmit" action="index"/>
@@ -115,7 +129,8 @@
                                 action="redisplayCart"
                                 params="[shoppingCartId: shoppingCart.id, restName: restaurant.restName]"
                                 class="btn btn-grey col-md-6">Go Back</g:link>
-                        <button onclick="fakeSubmit();" type="button" class="btn btn-blue col-md-6">Process My Order</button>
+                        <button onclick="fakeSubmit();" type="button"
+                                class="btn btn-blue col-md-6">Process My Order</button>
 
                         <div class="clearfix"></div>
                         <br>
@@ -189,6 +204,9 @@
     $('#streetName').focusout(validateStreetName);
     $('#city').focusout(validateCity);
     $('#postalCode').focusout(validatePostalCode);
+    $('#emailAddress').focusout(validateEmail);
+
+    var readyToSubmit = true;
 
     function validateFullName() {
         //insert validation
@@ -199,6 +217,8 @@
         }
         else {
             $('#fNameErrorMessage').hide();
+            $("#fNameErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -212,6 +232,8 @@
         }
         else {
             $('#ccNumErrorMessage').hide();
+            $("#ccNumErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -225,6 +247,8 @@
         }
         else {
             $('#expDateErrorMessage').hide();
+            $("#ccExpErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -238,6 +262,8 @@
         }
         else {
             $('#cwErrorMessage').hide();
+            $("#ccCwErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -251,6 +277,8 @@
         }
         else {
             $('#streetNameErrorMessage').hide();
+            $("#streetNameErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -264,6 +292,8 @@
         }
         else {
             $('#cityErrorMessage').hide();
+            $("#cityErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
     }
@@ -277,8 +307,32 @@
         }
         else {
             $('#postalCodeErrorMessage').hide();
+            $("#postalCodeErrorAlert").hide();
+            doIfAlertAllHidden();
         }
         return isValid;
+    }
+
+    function validateEmail() {
+        var isValid = true;
+        //insert validation
+        if (!IsEmail(document.getElementById('emailAddress').value.toString())) {
+            //alert('emailErrorMessage');
+            $('#emailAddressErrorMessage').text("Invalid Email. Please enter a valid email address.");
+            $('#emailAddressErrorMessage').show();
+            isValid = false;
+        }
+        else {
+            $('#emailAddressErrorMessage').hide();
+            $("#emailErrorAlert").hide();
+            doIfAlertAllHidden();
+        }
+        return isValid;
+    }
+
+    function IsEmail(email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
     }
 
 
@@ -341,6 +395,14 @@
             $("#postalCodeErrorAlert").hide();
         }
 
+        if (!validateEmail()) {
+            readyToSubmit = false;
+            $("#emailErrorAlert").show();
+        }
+        else {
+            $("#emailErrorAlert").hide();
+        }
+
         if (readyToSubmit) {
             $("#errorAlert").hide();
             $('#formSubmit').click();
@@ -348,10 +410,27 @@
         else {
             $("#errorAlert").show();
         }
+
     }
 
     function hideError() {
         $("#errorAlert").hide();
+    }
+
+    function doIfAlertAllHidden() {
+        var allAlertHidden = true;
+        allAlertHidden = $("#fNameErrorAlert").is(":hidden");
+        allAlertHidden = $("#ccNumErrorAlert").is(":hidden");
+        allAlertHidden = $("#ccExpErrorAlert").is(":hidden");
+        allAlertHidden = $("#ccCwErrorAlert").is(":hidden");
+        allAlertHidden = $("#streetNameErrorAlert").is(":hidden");
+        allAlertHidden = $("#cityErrorAlert").is(":hidden");
+        allAlertHidden = $("#postalCodeErrorAlert").is(":hidden");
+        allAlertHidden = $("#emailErrorAlert").is(":hidden");
+
+        if (allAlertHidden) {
+            $("#errorAlert").hide();
+        }
     }
 
 </script>
