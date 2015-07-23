@@ -26,7 +26,7 @@
                               class="collapse customValidationAlert"><strong>Invalid Expiry Date!</strong> The expected format is MMYY. (ex. 0917 for September 2017) <br>
                         </span>
                         <span id="ccCwErrorAlert"
-                              class="collapse customValidationAlert"><strong>Invalid CVV!</strong> Please enter a valid CVV.<br>
+                              class="collapse customValidationAlert"><strong>Invalid CVV!</strong> Please enter a valid CVV. (ex. 353)<br>
                         </span>
 
                         <span id="streetNameErrorAlert"
@@ -36,7 +36,7 @@
                               class="collapse customValidationAlert"><strong>Invalid City!</strong> Please enter a valid city.<br>
                         </span>
                         <span id="postalCodeErrorAlert"
-                              class="collapse customValidationAlert"><strong>Invalid Postal Code!</strong> Please enter a valid postal code. <br>
+                              class="collapse customValidationAlert"><strong>Invalid Postal Code!</strong> Please enter a valid postal code. (ex. K4S3B1)<br>
                         </span>
                         <span id="emailErrorAlert"
                               class="collapse customValidationAlert"><strong>Invalid Email!</strong> Please enter a valid email address.<br>
