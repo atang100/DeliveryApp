@@ -39,7 +39,7 @@
 				</div>
 			</div>
 			<nav id="mainmenu" class="mainmenu">
-				<ul>
+				<ul class="col-lg-6">
 					<li class="logo-wrapper"><a href="/DeliveryApp/home"><img src="${request.contextPath}/theme/img/eatBay.png" alt="Multipurpose Twitter Bootstrap Template"></a></li>
 					<li class="active">
 						<a href="/DeliveryApp/home">Home</a>
@@ -48,6 +48,13 @@
 						<a href="/DeliveryApp/about">About Us</a>
 					</li>
 				</ul>
+				<div class="input-group col-lg-6" style="top: 15px">
+					<input id="searchInputField" type="text" class="form-control" aria-label="...">
+					<span class="input-group-btn">
+						<button type="button" class="btn btn-blue">Search</button>
+					</span>
+				</div>
+
 			</nav>
 		</div>
 	</div>
